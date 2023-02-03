@@ -37,3 +37,28 @@ async def update_todo_by_id(id:int, todo_request: Request):
             return todo, 200
     return None, 404
 
+@app.delete("/todos/{id}")
+async def delete_todo_by_id(id:int):
+    for todo in fake_database:
+        if todo['id'] == id:
+           fake_database.remove(todo)
+        return todo, 200
+    return None, 404
+
+
+
+# from flask import Flask, jsonify, request
+
+# app = Flask(__name__)
+# todos = []
+
+# @app.route('/todos/<int:id>', methods=['DELETE'])
+# def delete_todo_by_id(id):
+#     for i, todo in enumerate(todos):
+#         if todo['id'] == id:
+#             del todos[i]
+#             return jsonify({'result': 'Todo with id {} has been deleted'.format(id)}), 200
+#     return jsonify({'error': 'Todo with id {} not found'.format(id)}), 404
+
+# if __name__ == '__main__':
+#     app.run()
