@@ -27,8 +27,8 @@ async def create_todo(request: Request):
   fake_database.append(todo)
   return todo
 
-@app.patch("/todos"):
-async def update_todo_by_id(id, todo_request, fake_database):
+@app.patch("/todos")
+async def update_todo_by_id(id, todo_request, todo_list):
     for todo in todo_list:
         if todo['id'] == id:
             todo.update(todo_request)
