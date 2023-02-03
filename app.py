@@ -1,5 +1,6 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request 
 from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 
@@ -42,23 +43,8 @@ async def delete_todo_by_id(id:int):
     for todo in fake_database:
         if todo['id'] == id:
            fake_database.remove(todo)
-        return todo, 200
-    return None, 404
+        return {"result": "OBJECT WAS SUCCESSFULLY DELETED"}, 200
+    return {"error": "OBJECT WAS NOT DELETED"}, 404
 
 
 
-# from flask import Flask, jsonify, request
-
-# app = Flask(__name__)
-# todos = []
-
-# @app.route('/todos/<int:id>', methods=['DELETE'])
-# def delete_todo_by_id(id):
-#     for i, todo in enumerate(todos):
-#         if todo['id'] == id:
-#             del todos[i]
-#             return jsonify({'result': 'Todo with id {} has been deleted'.format(id)}), 200
-#     return jsonify({'error': 'Todo with id {} not found'.format(id)}), 404
-
-# if __name__ == '__main__':
-#     app.run()
