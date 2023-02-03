@@ -27,3 +27,21 @@ async def create_todo(request: Request):
   fake_database.append(todo)
   return todo
 
+@app.patch("/todos"):
+async def update_todo_by_id(id, todo_request, fake_database):
+    for todo in todo_list:
+        if todo['id'] == id:
+            todo.update(todo_request)
+            return todo, 200
+    return None, 404
+
+todo_list = [{"id": 1, "task": "Take out the trash", "isDone": False},
+             {"id": 2, "task": "Buy groceries", "isDone": False}]
+
+todo_request = {"isDone": True}
+todo, status = update_todo_by_id(1, todo_request, todo_list)
+
+if status == 200:
+    print("Todo updated: ", todo)
+else:
+    print("Todo not found")
