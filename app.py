@@ -43,8 +43,9 @@ async def delete_todo_by_id(id:int):
     for todo in fake_database:
         if todo['id'] == id:
            fake_database.remove(todo)
-        return {"result": "OBJECT WAS SUCCESSFULLY DELETED"}, 200
+           return {"result": "OBJECT WAS SUCCESSFULLY DELETED"}, 200
     return {"error": "OBJECT WAS NOT DELETED"}, 404
+
 
 
 
